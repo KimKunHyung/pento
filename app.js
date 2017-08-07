@@ -3,9 +3,9 @@ const Bot = require('messenger-bot')
 const process = require('process')
 
 let bot = new Bot({
-  token: '<¿©±â¿¡ ¾Æ±î ÀúÀåÇØµÐ Page access tokenÀ» ³Ö´Â´Ù>',
+  token: 'EAAPGp72nqMIBACDiNxILaaZBNsEP8Ot8TBq7Pg2n1bEvLbd45ZAke5khXeZBWAQe4PUCWoG43hWZCqGOR7LLdDZAANsMmfzNLZAzqOaH6QDFRNxVsHNmTN4zcFVsyK7m8zQSZCgfU4l9R4I4Epduif9dY0SaNgjfl8iDxH1l2JemgZDZD' ,
   verify: 'helloworld',
-  app_secret: '<¾Æ±î ÀúÀåÇØµÐ App secret tokenÀ» ³Ö´Â´Ù>'
+  app_secret: 'b3f439dd050d4ca00ab72e490b4021b4'
 })
 
 bot.on('error', (err) => {
@@ -27,4 +27,4 @@ bot.on('message', (payload, reply) => {
 })
 
 http.createServer(bot.middleware()).listen(process.env.PORT)
-console.log('¼­¹ö ¶ä')
+console.log('ì„œë²„ ëœ¸')
