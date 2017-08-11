@@ -3,7 +3,7 @@ const Bot = require('messenger-bot')
 const process = require('process')
 
 let bot = new Bot({
-  token: 'e6956d830a9fb30ecae747b04feb0517',
+  token: 'EAACTH09XTOYBAO9xohlwvLxzLA7nZAz140bkRoFqPNsSbAwtZBVJHvdgAvkELeIzxRbDmm0nasyvw99mOF3irs110qlDmeJc001MtpacBpqQZB96HpFIUeZCHZCiPK0V7H5dI9VVRFyZCOBgAt4PpdZA7koGfDMzLPIqWxAPT4ZAxtWedLyiVHDA',
   verify: 'helloworld',
   app_secret: 'b3f439dd050d4ca00ab72e490b4021b4'
 })
