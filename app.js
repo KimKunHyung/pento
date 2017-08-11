@@ -1,30 +1,30 @@
-const http = require('http')
-const Bot = require('messenger-bot')
-const process = require('process')
+/* express, body-parser 설정 생략 */
+var Bot = require('messenger-bot');
+var bot = new Bot({
+    token: 'EAACTH09XTOYBACZC6bZAlRAfZBnkLenNPk2n3pBbhWlOUZA2RgMX0ZBbg30PKdzsM3nOQvLN7k9njZBtF1gYIIf3jvttXsZCuRxefMCZCjbZAwjs29ZBodw9fwtO7ZBeZBMTLsWotZB0gEu1dYIjlU13204NuiAge08nDGVACtRtpDw9ZCfIOzDvzZCrKZCH', // 페이지 토큰
+    verify: 'helloworld', // 설정한 확인 토큰
+    app_secret: '823ea6ec6608cd174ad961a9e11d2218' // 앱 시크릿 토큰
+});
 
-let bot = new Bot({
-  token: 'EAAPGp72nqMIBAPNlrk48XNbzmelpfmXn4C0bPbfPcse3HeD8u1MOXKUlvzfIp9i22ZCZBPSYkWNTy6ZBEnK5O0LvZA0Ev41f0kT0WJACdP4bFGXQmEUGpJfw7xApymhQdrdC158nK6nXagaeZCDRXrN6WohMrM17fvuURGZBx7XQZDZD',
-  verify: 'helloworld',
-  app_secret: 'b3f439dd050d4ca00ab72e490b4021b4'
-})
+bot.on('error', function(err) {
+    console.log(err.message);
+});
 
-bot.on('error', (err) => {
-  console.log(err.message)
-})
+bot.on('message', function(payload, reply) {
+    var text = payload.message.text;
+    console.log(text);
+    bot.getProfile(payload.sender.id, function(err, profile) {
+        if (err) throw err;
 
-bot.on('message', (payload, reply) => {
-  let text = payload.message.text
-
-  bot.getProfile(payload.sender.id, (err, profile) => {
-    if (err) throw err
-
-    reply({ text }, (err) => {
-      if (err) throw err
-
-      console.log(`${profile.first_name} ${profile.last_name}: ${text}`)
-    })
-  })
-})
-
-http.createServer(bot.middleware()).listen(process.env.PORT)
-console.log('서버 뜸')
+        reply({ text: text }, function(err) {
+            if (err) throw err;
+        });
+    });
+});
+// 페이스북 메세지는 모두 POST 요청으로 이를 다시 messenger-bot에게 패스
+app.post('/webhook', function(req, res) {
+    bot._handleMessage(req.body);
+    res.status(200).jsonp({
+        message: 'ok'
+    });
+});
